@@ -1,0 +1,38 @@
+services:
+  # ─── Backend: Node.js Web Service ─────────────────────────────────────────
+  - type: web
+    name: leados-api
+    runtime: node
+    rootDir: taskA/backend
+    buildCommand: npm install
+    startCommand: node server.js
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: MONGODB_URI
+        sync: false          # set manually in Render dashboard
+      - key: JWT_SECRET
+        generateValue: true  # Render generates a secure random value
+      - key: JWT_EXPIRES_IN
+        value: 7d
+      - key: CLIENT_URL
+        sync: false          # set to your frontend URL after it deploys
+
+  # ─── Frontend: Static Site ────────────────────────────────────────────────
+  - type: web
+    name: leados-frontend
+    runtime: static
+    rootDir: taskA/frontend
+    buildCommand: npm install && npm run build
+    staticPublishPath: dist
+    envVars:
+      - key: VITE_API_URL
+        sync: false          # set to your backend URL + /api after it deploys
+    headers:
+      - path: /*
+        name: Cache-Control
+        value: no-cache
+    routes:
+      - type: rewrite
+        source: /*
+        destination: /index.html
