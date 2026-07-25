@@ -1,8 +1,8 @@
 import express from 'express';
-import { register, login, getMe } from '../controllers/authController';
-import { authenticate } from '../middleware/auth';
+import { register, login, getMe } from '../controllers/authController.js';
+import { authenticate } from '../middleware/auth.js';
 
-export const router = express.Router();
+const router = express.Router();
 // POST /api/auth/register
 router.post('/register', register);
 
@@ -12,4 +12,5 @@ router.post('/login', login);
 // GET /api/auth/me  — protected
 router.get('/me', authenticate, getMe);
 
+export default router;
 

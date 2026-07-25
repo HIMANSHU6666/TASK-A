@@ -1,6 +1,7 @@
 {
   "name": "lead-platform-api",
   "version": "1.0.0",
+  "type": "module",
   "description": "Lead management platform API – Digital Heroes Task A",
   "main": "server.js",
   "scripts": {
@@ -9,6 +10,7 @@
     "test": "jest --forceExit --detectOpenHandles --runInBand"
   },
   "dependencies": {
+    "bcrypt": "^6.0.0",
     "bcryptjs": "^2.4.3",
     "cors": "^2.8.5",
     "dotenv": "^16.4.5",

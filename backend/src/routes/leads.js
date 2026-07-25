@@ -1,6 +1,6 @@
 import express from 'express';
-import { authenticate } from '../middleware/auth';
-import { requireRole } from '../middleware/roles';
+import { authenticate } from '../middleware/auth.js';
+import { requireRole } from '../middleware/roles.js';
 import {
   createLead,
   getLeads,
@@ -9,9 +9,9 @@ import {
   assignLead,
   addNote,
   getActivity,
-} from '../controllers/leadController';
+} from '../controllers/leadController.js';
 
-export const router = express.Router();
+ const router = express.Router();
 // POST /api/leads — public (capture form, no auth required)
 router.post('/', createLead);
 
@@ -36,3 +36,4 @@ router.post('/:id/notes', addNote);
 // GET   /api/leads/:id/activity — admin + member (member: only assigned)
 router.get('/:id/activity', getActivity);
 
+export default router;
