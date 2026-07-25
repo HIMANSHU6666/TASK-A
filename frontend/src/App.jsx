@@ -3,6 +3,7 @@ import { AuthProvider } from './context/AuthContext';
 import ProtectedRoute from './components/ProtectedRoute';
 import CapturePage    from './pages/CapturePage';
 import LoginPage      from './pages/LoginPage';
+import RegisterPage   from './pages/RegisterPage';
 import DashboardPage  from './pages/DashboardPage';
 import LeadDetailPage from './pages/LeadDetailPage';
 
@@ -13,6 +14,7 @@ const App = () => (
         {/* Public */}
         <Route path="/"      element={<CapturePage />} />
         <Route path="/login" element={<LoginPage />} />
+        <Route path="/register" element={<RegisterPage />} />
 
         {/* Protected — any authenticated user */}
         <Route

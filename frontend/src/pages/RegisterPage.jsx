@@ -2,11 +2,11 @@ import { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
 
-const LoginPage = () => {
-  const [form, setForm]       = useState({ email: '', password: '' });
+const RegisterPage = () => {
+  const [form, setForm]       = useState({ name: '', email: '', password: '', role: 'member' });
   const [loading, setLoading] = useState(false);
   const [error, setError]     = useState('');
-  const { login }             = useAuth();
+  const { register }          = useAuth();
   const navigate              = useNavigate();
 
   const handleChange = (e) => setForm({ ...form, [e.target.name]: e.target.value });
@@ -16,19 +16,13 @@ const LoginPage = () => {
     setLoading(true);
     setError('');
     try {
-      await login(form.email, form.password);
+      await register(form.name, form.email, form.password, form.role);
       navigate('/dashboard');
     } catch (err) {
-      setError(err.response?.data?.message || 'Login failed. Please check your credentials.');
+      setError(err.response?.data?.message || 'Registration failed. Please try again.');
     } finally {
       setLoading(false);
     }
-  };
-
-  // Demo credential quick-fill
-  const fillDemo = (role) => {
-    if (role === 'admin')  setForm({ email: 'admin@demo.com',  password: 'Admin@1234' });
-    if (role === 'member') setForm({ email: 'abc@gmail.com', password: 'Password123' });
   };
 
   return (
@@ -53,9 +47,9 @@ const LoginPage = () => {
             margin: '0 auto 0.75rem',
             boxShadow: '0 0 24px var(--accent-glow)',
           }}>L</div>
-          <h1 style={{ fontSize: '1.5rem' }}>Sign in to LeadOS</h1>
+          <h1 style={{ fontSize: '1.5rem' }}>Create your LeadOS account</h1>
           <p style={{ color: 'var(--text-2)', fontSize: '0.85rem', marginTop: '0.3rem' }}>
-            Manage your pipeline from one place
+            Start managing your pipeline today
           </p>
         </div>
 
@@ -64,9 +58,23 @@ const LoginPage = () => {
 
           <form onSubmit={handleSubmit}>
             <div className="form-group">
+              <label className="form-label">Full Name</label>
+              <input
+                id="register-name"
+                className="form-input"
+                type="text"
+                name="name"
+                value={form.name}
+                onChange={handleChange}
+                placeholder="John Doe"
+                required
+              />
+            </div>
+
+            <div className="form-group">
               <label className="form-label">Email</label>
               <input
-                id="login-email"
+                id="register-email"
                 className="form-input"
                 type="email"
                 name="email"
@@ -81,71 +89,48 @@ const LoginPage = () => {
             <div className="form-group">
               <label className="form-label">Password</label>
               <input
-                id="login-password"
+                id="register-password"
                 className="form-input"
                 type="password"
                 name="password"
                 value={form.password}
                 onChange={handleChange}
                 placeholder="••••••••"
-                autoComplete="current-password"
+                autoComplete="new-password"
                 required
               />
             </div>
 
+            <div className="form-group">
+              <label className="form-label">Role</label>
+              <select
+                id="register-role"
+                className="form-select"
+                name="role"
+                value={form.role}
+                onChange={handleChange}
+                required
+              >
+                <option value="member">👤 Member (standard user)</option>
+                <option value="admin">👑 Admin (full access)</option>
+              </select>
+            </div>
+
             <button
-              id="login-submit"
+              id="register-submit"
               className="btn btn-primary"
               type="submit"
               disabled={loading}
-              style={{ width: '100%', justifyContent: 'center', padding: '0.7rem', marginTop: '0.25rem' }}
+              style={{ width: '100%', justifyContent: 'center', padding: '0.7rem', marginTop: '0.5rem' }}
             >
-              {loading ? 'Signing in…' : 'Sign in →'}
+              {loading ? 'Creating account…' : 'Register →'}
             </button>
           </form>
-
-          {/* Demo credentials */}
-          <div style={{
-            marginTop: '1.5rem',
-            padding: '1rem',
-            background: 'var(--bg-2)',
-            borderRadius: 'var(--radius)',
-            border: '1px solid var(--border)',
-          }}>
-            <div style={{ fontSize: '0.75rem', color: 'var(--text-3)', fontWeight: 600, marginBottom: '0.6rem', textTransform: 'uppercase', letterSpacing: '0.06em' }}>
-              Demo accounts
-            </div>
-            <div style={{ display: 'flex', gap: '0.5rem' }}>
-              <button
-                id="demo-admin"
-                className="btn btn-ghost btn-sm"
-                style={{ flex: 1 }}
-                onClick={() => fillDemo('admin')}
-                type="button"
-              >
-                👑 Admin
-              </button>
-              <button
-                id="demo-member"
-                className="btn btn-ghost btn-sm"
-                style={{ flex: 1 }}
-                onClick={() => fillDemo('member')}
-                type="button"
-              >
-                👤 Member
-              </button>
-            </div>
-          </div>
         </div>
 
         <p style={{ textAlign: 'center', marginTop: '1.25rem', fontSize: '0.8rem', color: 'var(--text-3)' }}>
-          Don't have an account?{' '}
-          <Link id="register-link" to="/register" style={{ color: 'var(--accent)' }}>Register here</Link>
-        </p>
-
-        <p style={{ textAlign: 'center', marginTop: '0.5rem', fontSize: '0.8rem', color: 'var(--text-3)' }}>
-          Looking for the public form?{' '}
-          <Link to="/" style={{ color: 'var(--accent)' }}>Submit a lead</Link>
+          Already have an account?{' '}
+          <Link to="/login" style={{ color: 'var(--accent)' }}>Sign in here</Link>
         </p>
       </div>
 
@@ -158,4 +143,4 @@ const LoginPage = () => {
   );
 };
 
-export default LoginPage;
+export default RegisterPage;

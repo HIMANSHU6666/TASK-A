@@ -25,6 +25,14 @@ export const AuthProvider = ({ children }) => {
     return res.data.user;
   };
 
+  const register = async (name, email, password, role) => {
+    const res = await authAPI.register({ name, email, password, role });
+    localStorage.setItem('lead_token', res.data.token);
+    localStorage.setItem('lead_user', JSON.stringify(res.data.user));
+    setUser(res.data.user);
+    return res.data.user;
+  };
+
   const logout = () => {
     localStorage.removeItem('lead_token');
     localStorage.removeItem('lead_user');
@@ -35,7 +43,7 @@ export const AuthProvider = ({ children }) => {
   const isMember = () => user?.role === 'member';
 
   return (
-    <AuthContext.Provider value={{ user, login, logout, loading, isAdmin, isMember }}>
+    <AuthContext.Provider value={{ user, login, register, logout, loading, isAdmin, isMember }}>
       {children}
     </AuthContext.Provider>
   );

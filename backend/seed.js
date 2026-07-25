@@ -15,8 +15,8 @@ import dotenv from 'dotenv';
 
 dotenv.config();
 const DEMO_USERS = [
-  { name: 'Alex Rivera (Admin)', email: 'admin@demo.com', password: 'Admin@1234', role: 'admin' },
-  { name: 'Jamie Chen (Member)', email: 'member@demo.com', password: 'Member@1234', role: 'member' },
+  { name: 'admin', email: 'admin@demo.com', password: 'Admin@1234', role: 'admin' },
+  { name: 'abc', email: 'abc@gmail.com', password: 'Password123', role: 'member' },
 ];
 
 const SAMPLE_LEADS = [
@@ -77,7 +77,7 @@ const seed = async () => {
   console.log('━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━');
   console.log('Demo Credentials:');
   console.log('  Admin  → admin@demo.com  / Admin@1234');
-  console.log('  Member → member@demo.com / Member@1234');
+  console.log('  Member → abc@gmail.com / Password123');
   console.log('━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n');
 
   await mongoose.disconnect();
