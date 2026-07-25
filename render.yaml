@@ -3,7 +3,7 @@ services:
   - type: web
     name: leados-api
     runtime: node
-    rootDir: taskA/backend
+    rootDir: backend
     buildCommand: npm install
     startCommand: node server.js
     envVars:
@@ -22,7 +22,7 @@ services:
   - type: web
     name: leados-frontend
     runtime: static
-    rootDir: taskA/frontend
+    rootDir: frontend
     buildCommand: npm install && npm run build
     staticPublishPath: dist
     envVars:
