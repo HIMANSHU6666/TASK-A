@@ -1,5 +1,5 @@
-const jwt = require('jsonwebtoken');
-const User = require('../models/User');
+import jwt from 'jsonwebtoken';
+import User from '../models/User.js'
 
 /**
  * Sign a JWT for a given user ID
@@ -13,7 +13,7 @@ const signToken = (id) =>
  * POST /api/auth/register
  * Body: { name, email, password, role? }
  */
-const register = async (req, res) => {
+export const register = async (req, res) => {
   try {
     const { name, email, password, role } = req.body;
 
@@ -43,7 +43,7 @@ const register = async (req, res) => {
  * POST /api/auth/login
  * Body: { email, password }
  */
-const login = async (req, res) => {
+export const login = async (req, res) => {
   try {
     const { email, password } = req.body;
 
@@ -75,11 +75,11 @@ const login = async (req, res) => {
  * GET /api/auth/me  (protected)
  * Returns current authenticated user
  */
-const getMe = async (req, res) => {
+export const getMe = async (req, res) => {
   res.json({
     success: true,
     user: { id: req.user._id, name: req.user.name, email: req.user.email, role: req.user.role },
   });
 };
 
-module.exports = { register, login, getMe };
+

@@ -1,10 +1,9 @@
-const express = require('express');
-const router = express.Router();
-const { authenticate } = require('../middleware/auth');
-const { requireRole } = require('../middleware/roles');
-const { getUsers } = require('../controllers/userController');
+import express from 'express';
+import { authenticate } from '../middleware/auth';
+import { requireRole } from '../middleware/roles';
+import { getUsers } from '../controllers/userController';
 
+export const router = express.Router();
 // GET /api/users — admin only (for assignment dropdown)
 router.get('/', authenticate, requireRole('admin'), getUsers);
 
-module.exports = router;

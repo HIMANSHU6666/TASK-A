@@ -1,7 +1,7 @@
-const { MongoMemoryServer } = require('mongodb-memory-server');
-const mongoose = require('mongoose');
-const request = require('supertest');
-const app = require('../src/app');
+import { MongoMemoryServer } from 'mongodb-memory-server';
+import mongoose from 'mongoose';
+import request from 'supertest';
+import app from '../src/app.js';
 
 let mongod;
 

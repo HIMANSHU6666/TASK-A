@@ -1,4 +1,15 @@
-require('dotenv').config();
+import dotenv from 'dotenv';
+import express from 'express';
+import cors from 'cors';
+import helmet from 'helmet';
+import morgan from 'morgan';
+import rateLimit from 'express-rate-limit';
+
+import authRoutes from './routes/auth.js';
+import leadRoutes from './routes/leads.js';
+import userRoutes from './routes/users.js';
+
+dotenv.config();
 
 // Provide a default JWT_SECRET for the test environment so tests
 // don't fail with "secretOrPrivateKey must have a value".
@@ -6,17 +17,9 @@ if (!process.env.JWT_SECRET) {
   process.env.JWT_SECRET = 'test-secret-key-for-jest-at-least-32-chars-long';
 }
 
-const express = require('express');
-const cors = require('cors');
-const helmet = require('helmet');
-const morgan = require('morgan');
-const rateLimit = require('express-rate-limit');
 
-const authRoutes = require('./routes/auth');
-const leadRoutes = require('./routes/leads');
-const userRoutes = require('./routes/users');
 
-const app = express();
+ const app = express();
 
 // ── Security headers
 app.use(helmet());
@@ -78,4 +81,5 @@ app.use((err, req, res, next) => {
   });
 });
 
-module.exports = app;
+
+export default app;

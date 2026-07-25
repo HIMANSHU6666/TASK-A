@@ -1,4 +1,4 @@
-const mongoose = require('mongoose');
+import mongoose from 'mongoose';
 
 // Sub-schema for notes (append-only, immutable after creation)
 const noteSchema = new mongoose.Schema(
@@ -25,7 +25,7 @@ const activitySchema = new mongoose.Schema(
 
 const VALID_STATUSES = ['new', 'contacted', 'qualified', 'proposal', 'won', 'lost'];
 
-const leadSchema = new mongoose.Schema(
+export const leadSchema = new mongoose.Schema(
   {
     // Public capture form fields
     name: {
@@ -76,4 +76,5 @@ leadSchema.index({ createdAt: -1 });
 // Export valid statuses for use in controllers/validation
 leadSchema.statics.VALID_STATUSES = VALID_STATUSES;
 
-module.exports = mongoose.model('Lead', leadSchema);
+const Lead = mongoose.model('Lead', leadSchema);
+export default Lead;

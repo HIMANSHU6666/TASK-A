@@ -1,10 +1,10 @@
-const Lead = require('../models/Lead');
-const User = require('../models/User');
+import Lead from'../models/Lead.js';
+import User from '../models/User.js';
 
 /* ─────────────────────────────────────────
    POST /api/leads   (PUBLIC – capture form)
 ───────────────────────────────────────── */
-const createLead = async (req, res) => {
+export const createLead = async (req, res) => {
   try {
     const { name, email, company, message } = req.body;
 
@@ -38,7 +38,7 @@ const createLead = async (req, res) => {
    - Member: sees only leads assigned to them
    Query params: page, limit, status, assignee (admin only), search
 ─────────────────────────────────────────────────────────────────────────── */
-const getLeads = async (req, res) => {
+export const getLeads = async (req, res) => {
   try {
     const { page = 1, limit = 10, status, assignee, search } = req.query;
 
@@ -104,7 +104,7 @@ const getLeads = async (req, res) => {
    GET /api/leads/:id   (PROTECTED)
    Admin: any lead | Member: only assigned leads
 ────────────────────────────────────────────── */
-const getLead = async (req, res) => {
+export const getLead = async (req, res) => {
   try {
     const lead = await Lead.findById(req.params.id)
       .populate('assignedTo', 'name email role')
@@ -133,7 +133,7 @@ const getLead = async (req, res) => {
    PATCH /api/leads/:id/status   (PROTECTED – admin + member)
    Body: { status }
 ─────────────────────────────────────────────────────── */
-const updateStatus = async (req, res) => {
+export const updateStatus = async (req, res) => {
   try {
     const { status } = req.body;
 
@@ -180,7 +180,7 @@ const updateStatus = async (req, res) => {
    PATCH /api/leads/:id/assign   (PROTECTED – admin only)
    Body: { userId }  (null = unassign)
 ──────────────────────────────────────────────────── */
-const assignLead = async (req, res) => {
+export const assignLead = async (req, res) => {
   try {
     const { userId } = req.body;
 
@@ -221,7 +221,7 @@ const assignLead = async (req, res) => {
    Body: { text }
    Notes are append-only; cannot be edited or deleted.
 ──────────────────────────────────────────────────────────── */
-const addNote = async (req, res) => {
+export const addNote = async (req, res) => {
   try {
     const { text } = req.body;
 
@@ -267,7 +267,7 @@ const addNote = async (req, res) => {
    GET /api/leads/:id/activity   (PROTECTED)
    Returns the full activity trail for a lead.
 ────────────────────────────────────────────────────────────── */
-const getActivity = async (req, res) => {
+export const getActivity = async (req, res) => {
   try {
     const lead = await Lead.findById(req.params.id)
       .select('activity assignedTo')
@@ -288,4 +288,3 @@ const getActivity = async (req, res) => {
   }
 };
 
-module.exports = { createLead, getLeads, getLead, updateStatus, assignLead, addNote, getActivity };

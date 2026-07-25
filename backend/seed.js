@@ -1,5 +1,5 @@
 /**
- * seed.js — Populates the database with demo accounts and sample leads.
+.. * seed.js — Populates the database with demo accounts and sample leads.
  * Run with: node seed.js
  *
  * Demo credentials (put these in README for the recruiter):
@@ -7,12 +7,13 @@
  *   Member → member@demo.com / Member@1234
  */
 
-require('dotenv').config();
-const mongoose = require('mongoose');
-const User = require('./src/models/User');
-const Lead = require('./src/models/Lead');
-const connectDB = require('./src/config/db');
+import mongoose from 'mongoose';
+import User  from './src/models/User.js';
+import Lead from './src/models/Lead.js';
+import connectDB from './src/config/db.js';
+import dotenv from 'dotenv';
 
+dotenv.config();
 const DEMO_USERS = [
   { name: 'Alex Rivera (Admin)', email: 'admin@demo.com', password: 'Admin@1234', role: 'admin' },
   { name: 'Jamie Chen (Member)', email: 'member@demo.com', password: 'Member@1234', role: 'member' },

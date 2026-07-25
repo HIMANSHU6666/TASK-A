@@ -1,10 +1,10 @@
-const User = require('../models/User');
+import User from '../models/User.js';
 
 /**
  * GET /api/users   (admin only)
  * Returns list of all users — used for the assign-to-member dropdown in the UI.
  */
-const getUsers = async (req, res) => {
+export const getUsers = async (req, res) => {
   try {
     const users = await User.find({}).select('name email role createdAt').sort({ name: 1 });
     res.json({ success: true, data: users });
@@ -13,4 +13,3 @@ const getUsers = async (req, res) => {
   }
 };
 
-module.exports = { getUsers };

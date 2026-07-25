@@ -1,8 +1,7 @@
-const express = require('express');
-const router = express.Router();
-const { authenticate } = require('../middleware/auth');
-const { requireRole } = require('../middleware/roles');
-const {
+import express from 'express';
+import { authenticate } from '../middleware/auth';
+import { requireRole } from '../middleware/roles';
+import {
   createLead,
   getLeads,
   getLead,
@@ -10,8 +9,9 @@ const {
   assignLead,
   addNote,
   getActivity,
-} = require('../controllers/leadController');
+} from '../controllers/leadController';
 
+export const router = express.Router();
 // POST /api/leads — public (capture form, no auth required)
 router.post('/', createLead);
 
@@ -36,4 +36,3 @@ router.post('/:id/notes', addNote);
 // GET   /api/leads/:id/activity — admin + member (member: only assigned)
 router.get('/:id/activity', getActivity);
 
-module.exports = router;
