@@ -145,7 +145,7 @@ const LoginPage = () => {
       </div>
 
       <footer style={{ position: 'fixed', bottom: '1rem', fontSize: '0.75rem', color: 'var(--text-3)' }}>
-        <a href="https://digitalheroes.com" target="_blank" rel="noopener noreferrer" style={{ color: 'var(--text-3)' }}>
+        <a href="https://digitalheroesco.com/" target="_blank" rel="noopener noreferrer" style={{ color: 'var(--text-3)' }}>
           Built for Digital Heroes Training Task
         </a>
       </footer>

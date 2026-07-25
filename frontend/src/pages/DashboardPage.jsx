@@ -185,7 +185,7 @@ const DashboardPage = () => {
       </main>
 
       <footer className="site-footer">
-        <a href="https://digitalheroes.com" target="_blank" rel="noopener noreferrer">
+        <a href="https://digitalheroesco.com/" target="_blank" rel="noopener noreferrer">
           Built for Digital Heroes Training Task
         </a>
       </footer>
