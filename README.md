@@ -13,7 +13,7 @@ A production-grade lead management application built for small sales teams. Not 
 | Role   | Email              | Password     |
 |--------|--------------------|--------------|
 | Admin  | admin@demo.com     | Admin@1234   |
-| Member | member@demo.com    | Member@1234  |
+| Member | abc@gmail.com    | Password123  |
 
 > The login page has **one-click demo fill buttons** — just click "👑 Admin" or "👤 Member" then Sign in.
 
