@@ -4,7 +4,7 @@
 
 A production-grade lead management application built for small sales teams. Not just a form — a full pipeline with role-based access, a documented JSON API, automated tests, and a live deployment.
 
-🔗 **Live Demo**: _[Add Render URL after deployment]_
+🔗 **Live Demo**: https://leados-frontend.onrender.com
 
 ---
 
@@ -56,7 +56,7 @@ taskA/
     │   ├── api/index.js
     │   ├── context/AuthContext.jsx
     │   ├── components/      Navbar, StatusBadge, ActivityFeed, AssignModal, NoteForm, ProtectedRoute
-    │   └── pages/           CapturePage, LoginPage, DashboardPage, LeadDetailPage
+    │   └── pages/           CapturePage, RegisterPage, LoginPage, DashboardPage, LeadDetailPage
     └── package.json
 ```
 
@@ -66,7 +66,7 @@ taskA/
 
 ### Prerequisites
 - Node.js ≥ 18
-- MongoDB Atlas URI (free at [cloud.mongodb.com](https://cloud.mongodb.com))
+- MongoDB Atlas URI 
 
 ### 1. Backend
 
